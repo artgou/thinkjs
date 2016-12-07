@@ -235,6 +235,10 @@ export default class {
     if (this._contentTypeIsSend) {
       return;
     }
+    let oldType = this.type();
+    if (oldType === 'application/json' && this.headers.accept.indexOf(oldType) === -1) {
+      contentType = 'text/html';
+    }
     if (contentType.indexOf('/') === -1) {
       contentType = mime.lookup(contentType);
     }
